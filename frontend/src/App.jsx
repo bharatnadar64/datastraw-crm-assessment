@@ -10,8 +10,9 @@ export default function App() {
       <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
         {/* Navigation Bar */}
         <nav className="bg-white shadow-sm border-b border-gray-200 px-8 py-4 flex justify-between items-center sticky top-0 z-10">
-          <Link to="/" className="text-xl font-bold text-gray-900 tracking-tight">
-            Datastraw Support
+          <Link to="/" className="flex flex-col items-start">
+            <span className="text-xl font-bold text-gray-900 tracking-tight">Datastraw Support</span>
+            <span className="text-[10px] text-gray-400 font-medium tracking-widest uppercase mt-0.5">Crafted by Bharat Nadar</span>
           </Link>
           <div className="hidden sm:flex space-x-4">
             <Link
