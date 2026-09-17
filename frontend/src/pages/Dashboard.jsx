@@ -23,7 +23,7 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchAndCalculateStats = async () => {
       try {
-        const response = await fetch(API_BASE_URL);
+        const response = await fetch(`${API_BASE_URL}?limit=all`);
         if (!response.ok) throw new Error("Failed to fetch data");
         const data = await response.json();
         const tickets = data.tickets; // Access the array from the new response format

@@ -25,7 +25,7 @@ export default function Home() {
         if (search) params.append("search", search);
         if (status) params.append("status", status);
         params.append("page", page);
-        params.append("limit", 5); // Fetching 5 per page so you can see pagination easily
+        params.append("limit", 10); // Fetching 5 per page so you can see pagination easily
 
         const response = await fetch(`${API_BASE_URL}?${params.toString()}`);
         if (!response.ok) throw new Error("Failed to fetch tickets");
