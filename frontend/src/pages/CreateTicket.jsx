@@ -31,7 +31,8 @@ export default function CreateTicket() {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to create ticket");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to create ticket");
       }
 
       // Redirect to the home page upon success
