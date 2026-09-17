@@ -9,7 +9,7 @@ const router = express.Router();
 // Define the rate limit rule
 const createTicketLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 50, // Limit each IP to 5 ticket creations per window
+    max: 5, // Limit each IP to 5 ticket creations per window
     message: { message: 'Too many tickets created from this IP, please try again after 15 minutes.' }
 });
 
