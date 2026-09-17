@@ -5,6 +5,10 @@ import Note from '../models/Note.js';
 
 const router = express.Router();
 
+router.get('/', async (req, res) => {
+    res.status(200).json({ message: 'Ticket routes are working!' });
+});
+
 // POST /api/tickets
 router.post('/', async (req, res) => {
     try {
