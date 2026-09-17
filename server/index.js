@@ -16,6 +16,10 @@ app.use(express.json());
 // Connect to MongoDB Atlas
 connectDB();
 
+app.use('/', (req, res) => {
+    res.status(200).json({ message: "Api running successfully" });
+});
+
 app.use('/api/tickets', ticketRoutes);
 
 const PORT = process.env.PORT || 5000;
