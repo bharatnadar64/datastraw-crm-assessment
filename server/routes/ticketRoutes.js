@@ -2,12 +2,19 @@
 import express from 'express';
 import Ticket from '../models/Ticket.js';
 import Note from '../models/Note.js';
+import rateLimit from 'express-rate-limit';
 
 const router = express.Router();
 
+// Define the rate limit rule
+const createTicketLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 5, // Limit each IP to 5 ticket creations per window
+    message: { message: 'Too many tickets created from this IP, please try again after 15 minutes.' }
+});
 
 // POST /api/tickets
-router.post('/', async (req, res) => {
+router.post('/', createTicketLimiter, async (req, res) => {
     try {
         const { customer_name, customer_email, subject, description } = req.body;
 
@@ -45,15 +52,11 @@ router.post('/', async (req, res) => {
 // GET /api/tickets
 router.get('/', async (req, res) => {
     try {
-        const { status, search } = req.query;
+        const { status, search, page = 1, limit = 10 } = req.query;
         let query = {};
 
-        // 1. Filter by status if provided (e.g., ?status=Open)
-        if (status) {
-            query.status = status;
-        }
+        if (status) query.status = status;
 
-        // 2. Search across names, IDs, emails, and descriptions if provided[cite: 1]
         if (search) {
             query.$or = [
                 { customer_name: { $regex: search, $options: 'i' } },
@@ -63,12 +66,33 @@ router.get('/', async (req, res) => {
             ];
         }
 
-        // Fetch tickets and select only the required fields[cite: 1]
+        // If limit is set to 'all', fetch everything (useful for the dashboard)
+        if (limit === 'all') {
+            const tickets = await Ticket.find(query)
+                .select('ticket_id customer_name subject status created_at -_id')
+                .sort({ created_at: -1 });
+            return res.status(200).json({ tickets, totalPages: 1, currentPage: 1 });
+        }
+
+        // Calculate pagination variables
+        const pageNumber = parseInt(page);
+        const limitNumber = parseInt(limit);
+        const skip = (pageNumber - 1) * limitNumber;
+
+        // Fetch paginated tickets and the total count
         const tickets = await Ticket.find(query)
             .select('ticket_id customer_name subject status created_at -_id')
-            .sort({ created_at: -1 }); // Newest first
+            .sort({ created_at: -1 })
+            .skip(skip)
+            .limit(limitNumber);
 
-        res.status(200).json(tickets);
+        const totalTickets = await Ticket.countDocuments(query);
+
+        res.status(200).json({
+            tickets,
+            totalPages: Math.ceil(totalTickets / limitNumber),
+            currentPage: pageNumber
+        });
     } catch (error) {
         console.error('Error fetching tickets:', error.message);
         res.status(500).json({ message: 'Server Error' });

@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "",
-    "server" : "node index.js",
+    "server": "node index.js",
     "dev": "nodemon index.js"
   },
   "author": "",
@@ -15,6 +15,7 @@
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
     "mongodb": "^7.6.0",
     "mongoose": "^9.10.1"
   },
