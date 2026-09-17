@@ -61,26 +61,26 @@ export default function Dashboard() {
     );
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Analytics Overview</h1>
+    <div className="space-y-8">
+      <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Analytics Overview</h1>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-200">
           <p className="text-sm font-medium text-gray-500">Total Tickets</p>
           <p className="text-3xl font-bold text-gray-900 mt-2">{stats.total}</p>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 border-l-4 border-l-yellow-400">
+        <div className="bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-200 border-l-4 border-l-yellow-400">
           <p className="text-sm font-medium text-gray-500">Open</p>
           <p className="text-3xl font-bold text-gray-900 mt-2">{stats.open}</p>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 border-l-4 border-l-blue-500">
+        <div className="bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-200 border-l-4 border-l-blue-500">
           <p className="text-sm font-medium text-gray-500">In Progress</p>
           <p className="text-3xl font-bold text-gray-900 mt-2">
             {stats.inProgress}
           </p>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 border-l-4 border-l-green-500">
+        <div className="bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-200 border-l-4 border-l-green-500">
           <p className="text-sm font-medium text-gray-500">Closed</p>
           <p className="text-3xl font-bold text-gray-900 mt-2">
             {stats.closed}
@@ -89,7 +89,7 @@ export default function Dashboard() {
       </div>
 
       {/* Chart Section */}
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 h-96">
+      <div className="bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-200 h-96">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">
           Tickets by Status
         </h2>

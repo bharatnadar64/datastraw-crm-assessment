@@ -69,19 +69,19 @@ export default function TicketDetail() {
   if (!ticket) return null;
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-4xl mx-auto space-y-8">
       <button
         onClick={() => navigate("/")}
-        className="text-blue-600 hover:underline text-sm mb-4"
+        className="text-gray-500 hover:text-gray-900 transition-colors font-medium text-sm mb-2 inline-block"
       >
         &larr; Back to Tickets
       </button>
 
       {/* Ticket Info Card */}
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+      <div className="bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-200">
         <div className="flex justify-between items-start mb-4">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-2xl font-bold text-gray-900 tracking-tight">
               {ticket.subject}
             </h1>
             <p className="text-sm text-gray-500 mt-1">
@@ -105,7 +105,7 @@ export default function TicketDetail() {
           </div>
         </div>
 
-        <div className="bg-gray-50 p-4 rounded-md border border-gray-100">
+        <div className="bg-gray-50 p-5 rounded-lg border border-gray-200 mt-6">
           <h3 className="text-sm font-semibold text-gray-700 mb-2">
             Description
           </h3>
@@ -116,18 +116,18 @@ export default function TicketDetail() {
       </div>
 
       {/* Update & Notes Section */}
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+      <div className="bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-200">
         <h2 className="text-lg font-bold text-gray-900 mb-4">Update Ticket</h2>
 
         <form onSubmit={handleUpdate} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
               Change Status
             </label>
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              className="border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-blue-500 focus:border-blue-500 outline-none w-full md:w-1/3"
+              className="border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all w-full md:w-1/3"
             >
               <option value="Open">Open</option>
               <option value="In Progress">In Progress</option>
@@ -136,7 +136,7 @@ export default function TicketDetail() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
               Add Note
             </label>
             <textarea
@@ -144,14 +144,14 @@ export default function TicketDetail() {
               onChange={(e) => setNewNote(e.target.value)}
               placeholder="Type an internal note..."
               rows="3"
-              className="w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+              className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
             ></textarea>
           </div>
 
           <button
             type="submit"
             disabled={updating || (!newNote && status === ticket.status)}
-            className="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-blue-600 text-white font-medium px-6 py-2.5 rounded-lg hover:bg-blue-700 shadow-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {updating ? "Saving..." : "Save Update"}
           </button>
@@ -160,7 +160,7 @@ export default function TicketDetail() {
 
       {/* Activity / Notes History */}
       {ticket.notes && ticket.notes.length > 0 && (
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-200">
           <h2 className="text-lg font-bold text-gray-900 mb-4">
             Activity History
           </h2>
