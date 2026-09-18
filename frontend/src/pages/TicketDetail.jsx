@@ -85,8 +85,7 @@ export default function TicketDetail() {
               {ticket.subject}
             </h1>
             <p className="text-sm text-gray-500 mt-1">
-              Ticket ID: {ticket.ticket_id} • Created:{" "}
-              {new Date(ticket.created_at).toLocaleString()}
+              Ticket ID: {ticket.ticket_id}
             </p>
           </div>
           <span className="px-3 py-1 bg-gray-100 rounded-full text-sm font-medium">
