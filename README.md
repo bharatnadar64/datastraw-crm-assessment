@@ -10,7 +10,7 @@
 
 - 🌐 **Frontend (Live App):** https://datastraw-crm-assessment-jbk5.vercel.app
 - ⚙️ **Backend API:** https://datastraw-crm-assessment.vercel.app/
-- 🎥 **Demo Video:** [soon]
+- 🎥 **Demo Video:** https://www.loom.com/share/3439c89d14ba429ba5f7adb9c1d13ab1
 
 ---
 
